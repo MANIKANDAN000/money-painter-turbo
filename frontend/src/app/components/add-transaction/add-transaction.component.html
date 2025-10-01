@@ -1,0 +1,86 @@
+<div class="add-transaction-container">
+  <h2>Add New Transaction</h2>
+
+  <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input
+        id="description"
+        type="text"
+        formControlName="description"
+        placeholder="e.g., Groceries, Salary, Rent"
+        [class.is-invalid]="
+          transactionForm.get('description')?.invalid &&
+          (transactionForm.get('description')?.touched || transactionForm.get('description')?.dirty)
+        "
+      />
+      <div
+        *ngIf="
+          transactionForm.get('description')?.invalid &&
+          (transactionForm.get('description')?.touched || transactionForm.get('description')?.dirty)
+        "
+        class="invalid-feedback"
+      >
+        Description is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Amount:</label>
+      <input
+        id="amount"
+        type="number"
+        formControlName="amount"
+        placeholder="e.g., 50.25, 1200.00"
+        step="0.01"
+        [class.is-invalid]="
+          transactionForm.get('amount')?.invalid &&
+          (transactionForm.get('amount')?.touched || transactionForm.get('amount')?.dirty)
+        "
+      />
+      <div
+        *ngIf="
+          transactionForm.get('amount')?.invalid &&
+          (transactionForm.get('amount')?.touched || transactionForm.get('amount')?.dirty)
+        "
+        class="invalid-feedback"
+      >
+        <span
+          *ngIf="
+            transactionForm.get('amount')?.errors?.['required'] &&
+            (transactionForm.get('amount')?.touched || transactionForm.get('amount')?.dirty)
+          "
+          >Amount is required.</span
+        >
+        <span
+          *ngIf="
+            transactionForm.get('amount')?.errors?.['min'] &&
+            (transactionForm.get('amount')?.touched || transactionForm.get('amount')?.dirty)
+          "
+          >Amount must be positive.</span
+        >
+        <span
+          *ngIf="
+            transactionForm.get('amount')?.errors?.['pattern'] &&
+            (transactionForm.get('amount')?.touched || transactionForm.get('amount')?.dirty)
+          "
+          >Invalid amount format (e.g., 100.00, up to two decimal places).</span
+        >
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!transactionForm.valid || !websocketConnected">
+      Add Transaction
+    </button>
+  </form>
+
+  <div *ngIf="submissionMessage" class="submission-feedback">
+    <p [class.error-message]="submissionError" [class.success-message]="!submissionError">
+      {{ submissionMessage }}
+    </p>
+  </div>
+
+  <div *ngIf="!websocketConnected" class="websocket-status error-message">
+    WebSocket not connected. Please check your backend server.
+  </div>
+</div>

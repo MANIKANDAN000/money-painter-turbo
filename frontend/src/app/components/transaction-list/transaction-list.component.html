@@ -1,0 +1,28 @@
+<!-- frontend/src/app/components/transaction-list/transaction-list.component.html -->
+<div class="transaction-list-container">
+  <h2>Transaction List</h2>
+
+  <div *ngIf="errorMessage" class="error-message-banner">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!websocketConnected && !errorMessage" class="warning-message-banner">
+    Connecting to WebSocket...
+  </div>
+
+  <div *ngIf="transactions.length === 0 && websocketConnected" class="no-transactions">
+    No transactions yet. Add some!
+  </div>
+
+  <ul class="transaction-items">
+    <li *ngFor="let transaction of transactions" class="transaction-item">
+      <div class="transaction-details">
+        <span class="transaction-description">{{ transaction.description }}</span>
+        <span class="transaction-amount">${{ transaction.amount | number : '1.2-2' }}</span>
+      </div>
+      <div class="transaction-timestamp">
+        ({{ getTimeDifference(transaction.timestamp) }})
+      </div>
+    </li>
+  </ul>
+</div>

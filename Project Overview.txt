@@ -1,0 +1,10 @@
+Project Overview
+Frontend: Angular (TypeScript)
+
+Backend: Django Rest Framework with Channels (WebSocket support for real-time)
+
+Real-time: WebSocket communication via Django Channels and Angular WebSocket client
+
+Database: SQLite for simplicity (can be swapped to PostgreSQL)
+
+Dependencies: Comprehensive package lists for Angular and Django

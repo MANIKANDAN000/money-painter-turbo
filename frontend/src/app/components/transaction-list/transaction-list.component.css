@@ -1,0 +1,185 @@
+/* frontend/src/app/components/transaction-list/transaction-list.component.css */
+.transaction-list-container {
+  padding: 25px;
+  max-width: 600px;
+  margin: 20px auto;
+  border: 1px solid #444;
+  border-radius: 12px;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(41, 98, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(156, 39, 176, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.transaction-list-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(100, 149, 237, 0.6) 50%, 
+    transparent 100%);
+}
+
+h2 {
+  text-align: center;
+  color: #e0e0e0;
+  margin-bottom: 25px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4fc3f7, transparent);
+}
+
+.error-message-banner,
+.warning-message-banner {
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.error-message-banner {
+  background: linear-gradient(135deg, rgba(244, 67, 54, 0.2) 0%, rgba(211, 47, 47, 0.15) 100%);
+  color: #ff8a80;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.warning-message-banner {
+  background: linear-gradient(135deg, rgba(255, 152, 0, 0.2) 0%, rgba(245, 124, 0, 0.15) 100%);
+  color: #ffd54f;
+  border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.no-transactions {
+  text-align: center;
+  color: #b0b0b0;
+  font-style: italic;
+  padding: 30px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+}
+
+.transaction-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.transaction-item::before {
+  content: '';
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(100, 149, 237, 0.1), 
+    transparent);
+  transition: left 0.5s ease;
+}
+
+.transaction-item:hover::before {
+  left: 100%;
+}
+
+.transaction-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  transform: translateX(4px);
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+.transaction-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.transaction-description {
+  font-weight: 600;
+  color: #e0e0e0;
+  font-size: 1.1em;
+  margin-bottom: 4px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.transaction-amount {
+  color: #4fc3f7; /* Bright cyan-blue for amounts */
+  font-size: 1.05em;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(79, 195, 247, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.transaction-timestamp {
+  color: #9e9e9e;
+  font-size: 0.85em;
+  font-style: italic;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtle background pattern */
+.transaction-list-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px, 20px 20px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure content stays above the background pattern */
+.transaction-list-container > * {
+  position: relative;
+  z-index: 1;
+}

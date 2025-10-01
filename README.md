@@ -160,7 +160,8 @@ Open a Pull Request (PR): Go to your GitHub repository and open a PR from your b
 Get it reviewed and merge!
 5. Project Structure
 code
-Code
+
+
 money-painter-turbo/
 ├── backend/
 │   ├── finance/                  # Django app for core finance logic (consumers, routing)
@@ -221,6 +222,7 @@ money-painter-turbo/
 │   ├── favicon_io.zip
 │   └── favicon.ico
 └── README.md
+
 6. Troubleshooting Common Issues
 "WebSocket not connected":
 Backend not running: Ensure you've run daphne -p 8000 money_painter_turbo.asgi:application in a separate terminal and it shows "Listening on TCP address 0.0.0.0:8000".
